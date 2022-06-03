@@ -4,12 +4,15 @@ using TCEngine;
 
 namespace TCGame
 {
-    class SimpleShooterDemo : Game
+    class TwistedRelation : Game
     {
         public void Init()
         {
             CreateMainCharacter();
-            CreateObjectSpawner();
+            //CreateAlly();
+            CreateEnemySpawner();
+            //CreateControlBar();
+            //CreateScenario();
             CreateHUD();
         }
 
@@ -42,7 +45,7 @@ namespace TCGame
 
             // TODO:
             // - Add your new component (the one that follows the mouse poisition) to the actor
-            FollowMouseComponent mainFollowMouseComponent = actor.AddComponent<FollowMouseComponent>();
+            AimMouseComponent mainFollowMouseComponent = actor.AddComponent<AimMouseComponent>();
             
             //   with a linear speed of 400 pixels/second and an angular speed of 360 degrees/second
             mainFollowMouseComponent.Speed = 400.0f;
@@ -56,7 +59,7 @@ namespace TCGame
             TecnoCampusEngine.Get.Scene.CreateActor(actor);
         }
 
-        private void CreateObjectSpawner()
+        private void CreateEnemySpawner()
         {
             // Create the actor Object Spawner and add the ActorSpawnerComponent
             Actor objectSpawner = new Actor("Object Spawner");

@@ -7,53 +7,45 @@ using TCEngine;
 
 namespace TCGame
 {
-    public class FollowMouseComponent : BaseComponent
+    public class AimMouseComponent : BaseComponent
     {
-        private const float DEFAULT_SPEED = 400.0f;
         private const float DEFAULT_ANGULAR_SPEED = 360.0f;
         private static Vector2f UP_VECTOR = new Vector2f(0.0f, -1.0f);
 
         private Vector2f m_DesiredForward;
         private Vector2f m_MousePosition;
         private Vector2f m_Forward;
-        private Vector2f m_PositionWithoutModifiers;
 
         private float m_AngularSpeed = DEFAULT_ANGULAR_SPEED;
-        private float m_Speed;
 
         public Vector2f Forward
         {
             get => m_Forward;
             set => m_Forward = value;
         }
-        public float Speed
-        {
-            get => m_Speed;
-            set => m_Speed = value;
-        }
+       
         public float AngularSpeed
         {
             get => m_AngularSpeed;
             set => m_AngularSpeed = value;
         }
 
-        public FollowMouseComponent()
+        public AimMouseComponent()
         {
             m_Forward = UP_VECTOR;
-            m_Speed = DEFAULT_SPEED;
             m_MousePosition = new Vector2f(0.0f, 0.0f);
             m_DesiredForward = new Vector2f();
+            m_AngularSpeed = DEFAULT_ANGULAR_SPEED;
         }
 
-        public FollowMouseComponent(Vector2f _forward)
+        public AimMouseComponent(Vector2f _forward)
         {
             m_Forward = _forward;
-            m_Speed = DEFAULT_SPEED;
             m_MousePosition = new Vector2f(0.0f, 0.0f);
             m_DesiredForward = new Vector2f();
         }
 
-        public FollowMouseComponent(Vector2f _forward, float _speed)
+        public AimMouseComponent(Vector2f _forward, float _speed)
         {
             m_Forward = _forward;
             m_Speed = _speed;
@@ -127,7 +119,7 @@ namespace TCGame
 
         public override object Clone()
         {
-            FollowMouseComponent clonedComponent = new FollowMouseComponent(m_Forward, m_Speed);
+            AimMouseComponent clonedComponent = new AimMouseComponent(m_Forward, m_Speed);
             return clonedComponent;
         }
     }
