@@ -71,7 +71,7 @@ namespace TCGame
 
                 // TODO:
                 // 1. Get the component where you store the m_Forward information
-                FollowMouseComponent followMouseComponent = Owner.GetComponent<FollowMouseComponent>();
+                AimMouseComponent followMouseComponent = Owner.GetComponent<AimMouseComponent>();
 
                 // 2. Add a component to the bulletActor that:
                 //      - Moves in the same direction as this actor (you will get the information from the component you got in the previous line)

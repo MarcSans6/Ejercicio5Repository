@@ -7,7 +7,7 @@ namespace TCGame
     {
         public static void Main()
         {
-            TecnoCampusEngine.Get.Run(new SimpleShooterDemo());
+            TecnoCampusEngine.Get.Run(new TwistedRelation());
         }
     }
 }
