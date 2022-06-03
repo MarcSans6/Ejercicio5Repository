@@ -3,17 +3,17 @@ using SFML.System;
 using System;
 using TCEngine;
 
+
 namespace TCGame
 {
     public class HUDComponent : RenderComponent
     {
-        private int m_Points = 0;
+        public Actor Timer;
 
-        private Font m_Font;
-        private Text m_Text;
-        private Text m_BlinkText;
+       
 
         private string m_Label;
+
 
         public HUDComponent(string _label)
         {
@@ -42,6 +42,15 @@ namespace TCGame
             UpdateText();
         }
 
+        public void CreateActor()
+        {
+            Actor timer = new Actor("Caos Bar");
+
+            TimerComponent timerComponent = timer.GetComponent<TimerComponent>();
+            timerComponent.Duration = 100.0f;
+
+            timerComponent.OnTime = timer.Destroy();
+        }
         public override void Update(float _dt)
         {
             base.Update(_dt);
@@ -59,20 +68,20 @@ namespace TCGame
         private void SetupTextProperties()
         {
 
-            const uint characterSize = 30u;
-            const float outlineThickness = 2.0f;
-            const float pointsOffset = 50.0f;
-            Color outlineColor = Color.Red;
+            //const uint characterSize = 30u;
+            //const float outlineThickness = 2.0f;
+            //const float pointsOffset = 50.0f;
+            //Color outlineColor = Color.Red;
 
-            m_Text.CharacterSize = characterSize;
-            m_Text.OutlineThickness = outlineThickness;
-            m_Text.OutlineColor = outlineColor;
+            //m_Text.CharacterSize = characterSize;
+            //m_Text.OutlineThickness = outlineThickness;
+            //m_Text.OutlineColor = outlineColor;
 
-            m_BlinkText.CharacterSize = characterSize;
-            m_BlinkText.OutlineThickness = outlineThickness;
-            m_BlinkText.OutlineColor = outlineColor;
+            //m_BlinkText.CharacterSize = characterSize;
+            //m_BlinkText.OutlineThickness = outlineThickness;
+            //m_BlinkText.OutlineColor = outlineColor;
 
-            m_BlinkText.Position = new Vector2f(pointsOffset + m_Text.GetLocalBounds().Width, 0.0f);
+            //m_BlinkText.Position = new Vector2f(pointsOffset + m_Text.GetLocalBounds().Width, 0.0f);
         }
 
         private void UpdateText()
@@ -87,11 +96,7 @@ namespace TCGame
             UpdateText();
         }
 
-        public void ResetPoints()
-        {
-            m_Points = 0;
-            UpdateText();
-        }
+        
 
 
         public override object Clone()
