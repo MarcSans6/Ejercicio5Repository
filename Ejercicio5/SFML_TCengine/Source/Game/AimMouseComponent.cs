@@ -43,14 +43,15 @@ namespace TCGame
             m_Forward = _forward;
             m_MousePosition = new Vector2f(0.0f, 0.0f);
             m_DesiredForward = new Vector2f();
+            m_AngularSpeed = DEFAULT_ANGULAR_SPEED;
         }
 
-        public AimMouseComponent(Vector2f _forward, float _speed)
+        public AimMouseComponent(Vector2f _forward, float _angularSpeed)
         {
             m_Forward = _forward;
-            m_Speed = _speed;
             m_MousePosition = new Vector2f(0.0f, 0.0f);
             m_DesiredForward = new Vector2f();
+            m_AngularSpeed = _angularSpeed;
         }
 
         public override void OnActorCreated()
@@ -58,11 +59,6 @@ namespace TCGame
             base.OnActorCreated();
 
             TecnoCampusEngine.Get.Window.MouseMoved += MouseMovedHandler;
-
-            TransformComponent transformComponent = Owner.GetComponent<TransformComponent>();
-            Debug.Assert(transformComponent != null);
-
-            m_PositionWithoutModifiers = transformComponent.Transform.Position;
         }
 
         public override void Update(float _dt)
@@ -95,10 +91,7 @@ namespace TCGame
             // Calculate the real forward
             m_Forward = m_Forward.Rotate(angleToRotate);
 
-            Vector2f velocity = m_Forward * m_Speed;
-            m_PositionWithoutModifiers += velocity * _dt;
 
-            transformComponent.Transform.Position = m_PositionWithoutModifiers;
         }
 
         private void MouseMovedHandler(object _sender, MouseMoveEventArgs _mouseEventArgs)
@@ -119,7 +112,7 @@ namespace TCGame
 
         public override object Clone()
         {
-            AimMouseComponent clonedComponent = new AimMouseComponent(m_Forward, m_Speed);
+            AimMouseComponent clonedComponent = new AimMouseComponent(m_Forward, m_AngularSpeed);
             return clonedComponent;
         }
     }
