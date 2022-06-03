@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "PjLCTDsmHLlNqzq1uNvklwtwDTmd9rIOodP662k4/wB69PA5b5helImOzUhzJdPOl0NmAP1y2BeRERRQNOwoBw==",
+  "dgSpecHash": "rD8RlkUV15zzeC3XkaHsEprZOyTA427sbgRJKCSjzw8piaaolgzyr2TACCjdi0o6+xS/4vCA+5ELUxnn0tw3jQ==",
   "success": true,
-  "projectFilePath": "C:\\Coses Grau\\3r Trimestre\\PROGRAMACIÓ II\\Ejercicios\\EJERCICIO 5 GAME JAM\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\SFML_TCengine.csproj",
+  "projectFilePath": "C:\\Users\\LENOVO\\OneDrive\\Escritorio\\TECNOCAMPUS\\1R Curs\\3R Trimestre\\Programacion\\Entregas\\EJERCICIO5 GAMEJAM\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\SFML_TCengine.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Marc\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
-    "C:\\Users\\Marc\\.nuget\\packages\\sfml.audio\\2.5.0\\sfml.audio.2.5.0.nupkg.sha512",
-    "C:\\Users\\Marc\\.nuget\\packages\\sfml.graphics\\2.5.0\\sfml.graphics.2.5.0.nupkg.sha512",
-    "C:\\Users\\Marc\\.nuget\\packages\\sfml.net\\2.5.0\\sfml.net.2.5.0.nupkg.sha512",
-    "C:\\Users\\Marc\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
-    "C:\\Users\\Marc\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512"
+    "C:\\Users\\LENOVO\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\sfml.audio\\2.5.0\\sfml.audio.2.5.0.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\sfml.graphics\\2.5.0\\sfml.graphics.2.5.0.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\sfml.net\\2.5.0\\sfml.net.2.5.0.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512"
   ],
   "logs": []
 }
