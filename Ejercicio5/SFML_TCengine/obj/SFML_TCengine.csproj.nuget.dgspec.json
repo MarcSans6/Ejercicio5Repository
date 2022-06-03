@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Coses Grau\\3r Trimestre\\PROGRAMACIÓ II\\Ejercicios\\EJERCICIO 5 GAME JAM\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\SFML_TCengine.csproj": {}
+    "C:\\Users\\iagoa\\OneDrive\\Desktop\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\SFML_TCengine.csproj": {}
   },
   "projects": {
-    "C:\\Coses Grau\\3r Trimestre\\PROGRAMACIÓ II\\Ejercicios\\EJERCICIO 5 GAME JAM\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\SFML_TCengine.csproj": {
+    "C:\\Users\\iagoa\\OneDrive\\Desktop\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\SFML_TCengine.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Coses Grau\\3r Trimestre\\PROGRAMACIÓ II\\Ejercicios\\EJERCICIO 5 GAME JAM\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\SFML_TCengine.csproj",
+        "projectUniqueName": "C:\\Users\\iagoa\\OneDrive\\Desktop\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\SFML_TCengine.csproj",
         "projectName": "SFML_TCengine",
-        "projectPath": "C:\\Coses Grau\\3r Trimestre\\PROGRAMACIÓ II\\Ejercicios\\EJERCICIO 5 GAME JAM\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\SFML_TCengine.csproj",
-        "packagesPath": "C:\\Users\\Marc\\.nuget\\packages\\",
-        "outputPath": "C:\\Coses Grau\\3r Trimestre\\PROGRAMACIÓ II\\Ejercicios\\EJERCICIO 5 GAME JAM\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\obj\\",
+        "projectPath": "C:\\Users\\iagoa\\OneDrive\\Desktop\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\SFML_TCengine.csproj",
+        "packagesPath": "C:\\Users\\iagoa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\iagoa\\OneDrive\\Desktop\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Marc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\iagoa\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -58,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }
