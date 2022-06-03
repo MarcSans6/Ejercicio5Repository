@@ -69,23 +69,15 @@ namespace TCGame
                 transformComponent.Transform.Position = actorTransform.Transform.Position;
                 transformComponent.Transform.Rotation = actorTransform.Transform.Rotation;
 
-                // TODO:
-                // 1. Get the component where you store the m_Forward information
-                AimMouseComponent followMouseComponent = Owner.GetComponent<AimMouseComponent>();
+                // Get the component where you store the m_Forward information
+                AimMouseComponent aimMouseComponent = Owner.GetComponent<AimMouseComponent>();
 
-                // 2. Add a component to the bulletActor that:
-                //      - Moves in the same direction as this actor (you will get the information from the component you got in the previous line)
-                //      - The speed must be 700 pixels/second
+                // Add the MRUComponent to the bulletActor
                 MRUComponent mruComponent = bulletActor.AddComponent<MRUComponent>();
-                mruComponent.Forward = followMouseComponent.Forward;
+                mruComponent.Forward = aimMouseComponent.Forward;
                 mruComponent.Speed = 700.0f;
 
-                // 3. Add a TimerComponent with a duration of 2 seconds
-                //      - When the timer finishes, the bulletActor must be destroyed
-                TimerComponent timerComponent = bulletActor.AddComponent<TimerComponent>();
-                timerComponent.Duration = 2.0f;
-                timerComponent.OnTime = bulletActor.Destroy;
-
+               
                 // Add the BulletComponent to the bulletActor
                 bulletActor.AddComponent<BulletComponent>();
 

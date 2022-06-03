@@ -12,7 +12,7 @@ namespace TCGame
             //CreateAlly();
             CreateEnemySpawner();
             //CreateControlBar();
-            //CreateScenario();
+            CreateScenario();
             CreateHUD();
         }
 
@@ -100,6 +100,13 @@ namespace TCGame
             TecnoCampusEngine.Get.Scene.CreateActor(objectSpawner);
         }
 
+        private void CreateScenario()
+        {
+            Actor actor = new Actor("Scenario Actor");
+
+            // Add the ScenarioComponent
+
+        }
         private void CreateHUD()
         {
             Actor actor = new Actor("HUD Actor");

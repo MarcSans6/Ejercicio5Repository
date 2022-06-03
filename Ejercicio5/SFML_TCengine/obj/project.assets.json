@@ -444,24 +444,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\iagoa\\.nuget\\packages\\": {}
+    "C:\\Users\\LENOVO\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\iagoa\\OneDrive\\Desktop\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\SFML_TCengine.csproj",
+      "projectUniqueName": "C:\\Users\\LENOVO\\OneDrive\\Escritorio\\TECNOCAMPUS\\1R Curs\\3R Trimestre\\Programacion\\Entregas\\EJERCICIO5 GAMEJAM\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\SFML_TCengine.csproj",
       "projectName": "SFML_TCengine",
-      "projectPath": "C:\\Users\\iagoa\\OneDrive\\Desktop\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\SFML_TCengine.csproj",
-      "packagesPath": "C:\\Users\\iagoa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\iagoa\\OneDrive\\Desktop\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\obj\\",
+      "projectPath": "C:\\Users\\LENOVO\\OneDrive\\Escritorio\\TECNOCAMPUS\\1R Curs\\3R Trimestre\\Programacion\\Entregas\\EJERCICIO5 GAMEJAM\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\SFML_TCengine.csproj",
+      "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LENOVO\\OneDrive\\Escritorio\\TECNOCAMPUS\\1R Curs\\3R Trimestre\\Programacion\\Entregas\\EJERCICIO5 GAMEJAM\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\iagoa\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
