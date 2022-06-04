@@ -21,22 +21,7 @@ namespace TCGame
         private string m_Label;
 
         //Constructor where we add the label and we locate the font
-        public HUDComponent(string _label)
-        {
-            m_RenderLayer = ERenderLayer.HUD;
-
-            m_Label = _label;
-            m_barValue = value;
-
-            m_ControlBar = TecnoCampusEngine.Get.Resources.GetTexture("Textures/Pixel");//aqui se porque falla chill, lo que no se es como añadir la textura y despues msotrar la imagen
-
-            m_Font = TecnoCampusEngine.Get.Resources.GetFont("Fonts/Coffee Extra");
-            m_Text = new Text(m_Label, m_Font);
-            m_BlinkText = new Text(m_Kills.ToString(), m_Font);
-
-            TextProperties();
-            UpdateText();
-        }
+        
 
         //Constructor where we add the label and the font of the Kills text
         public HUDComponent(string _label, Font _font)
@@ -46,7 +31,6 @@ namespace TCGame
             m_Label = _label;
 
             m_barValue = Texture.MaximumSize;
-            m_ControlBar = new Texture;
 
             m_Font = _font;
             m_Text = new Text(m_Label, m_Font);
@@ -93,9 +77,7 @@ namespace TCGame
         //This method updates the bar weight
         public void UpdateBar()
         {
-
             m_barWeight -= m_barValue;
-            Texture.MaximumSize = m_barWeight;
         }
 
         //This method add kills to the hud

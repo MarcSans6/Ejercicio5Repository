@@ -4,14 +4,21 @@ using TCEngine;
 
 namespace TCGame    
 {
-    class MainCharacterController: BaseComponent
+    class MainCharacterControllerComponent: BaseComponent
     {
-        private const float MOVEMENT_SPEED = 200f;
+        private const float DEAFULT_MOVEMENT_SPEED = 200f;
 
-        private Vector2f m_dir;
+        private float m_Speed;
+        private Vector2f m_Dir;
 
-        public MainCharacterController()
+        public float Speed
         {
+            get => m_Speed;
+            set => m_Speed = value;
+        }
+        public MainCharacterControllerComponent()
+        {
+            m_Speed = DEAFULT_MOVEMENT_SPEED;
         }
 
         public override EComponentUpdateCategory GetUpdateCategory()
@@ -23,27 +30,27 @@ namespace TCGame
         {
             base.Update(_dt);
 
-            m_dir = new Vector2f(0, 0);
+            m_Dir = new Vector2f(0, 0);
 
             if (Keyboard.IsKeyPressed(Keyboard.Key.W))
             {
-                m_dir += new Vector2f(0, -1);
+                m_Dir += new Vector2f(0, -1);
             }
             if (Keyboard.IsKeyPressed(Keyboard.Key.A))
             {
-                m_dir += new Vector2f(-1, 0);
+                m_Dir += new Vector2f(-1, 0);
             }
             if (Keyboard.IsKeyPressed(Keyboard.Key.S))
             {
-                m_dir += new Vector2f(0, 1);
+                m_Dir += new Vector2f(0, 1);
 
             }
             if (Keyboard.IsKeyPressed(Keyboard.Key.D))
             {
-                m_dir += new Vector2f(1, 0);
+                m_Dir += new Vector2f(1, 0);
 
             }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
+            if (Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 if (Owner.GetComponent<WeaponComponent>() != null)
                 {
@@ -51,9 +58,9 @@ namespace TCGame
                 }
             }
 
-            m_dir = m_dir.Normal();
+            m_Dir = m_Dir.Normal();
 
-            Owner.GetComponent<TransformComponent>().Transform.Position += m_dir * MOVEMENT_SPEED * _dt;
+            Owner.GetComponent<TransformComponent>().Transform.Position += m_Dir * m_Speed * _dt;
         }
     }
 }
