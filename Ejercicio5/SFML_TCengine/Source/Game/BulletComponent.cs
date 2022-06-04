@@ -24,7 +24,6 @@ namespace TCGame
                     if (hudComponent != null)
                     {
                         // TODO: Call the HUDComponent method that is used to increase the number of points shown
-                        hudComponent.IncreasePoints();
                     }
                 }
             }

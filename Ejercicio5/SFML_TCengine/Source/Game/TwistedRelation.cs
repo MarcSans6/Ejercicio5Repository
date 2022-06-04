@@ -13,7 +13,7 @@ namespace TCGame
             CreateEnemySpawner();
             //CreateControlBar();
             CreateScenario();
-            CreateHUD();
+            //CreateHUD();
         }
 
         public void DeInit()
@@ -29,6 +29,7 @@ namespace TCGame
             Actor actor = new Actor("Following Mouse Actor");
 
             // Create an arrow shape using a ConvexShape
+
             ConvexShape shape = new ConvexShape(4);
             shape.SetPoint(0, new Vector2f(20.0f, 0.0f));
             shape.SetPoint(1, new Vector2f(40.0f, 40.0f));
@@ -43,14 +44,14 @@ namespace TCGame
             TransformComponent transformComponent = actor.AddComponent<TransformComponent>();
             transformComponent.Transform.Position = new Vector2f(600.0f, 200.0f);
 
-            // TODO:
-            // - Add your new component (the one that follows the mouse poisition) to the actor
-            AimMouseComponent mainFollowMouseComponent = actor.AddComponent<AimMouseComponent>();
-            
-            //   with a linear speed of 400 pixels/second and an angular speed of 360 degrees/second
-            mainFollowMouseComponent.Speed = 400.0f;
-            mainFollowMouseComponent.AngularSpeed = 360.0f;
+            // Add the aim component and set its position correctly
+            AimMouseComponent mainAimMouseComponent = actor.AddComponent<AimMouseComponent>();
+            mainAimMouseComponent.AngularSpeed = 360.0f;
 
+            // Add the controller to the main character
+            MainCharacterControllerComponent mainCharacterControllerComponent = 
+                actor.AddComponent<MainCharacterControllerComponent>();
+             
             //////////////////////////////////////////////////
 
             actor.AddComponent<WeaponComponent>();
@@ -117,10 +118,46 @@ namespace TCGame
         }
         private void CreateScenario()
         {
-            Actor actor = new Actor("Scenario Actor");
+            Actor scenarioController = new Actor("Scenario Actor");
 
             // Add the ScenarioComponent
+            ScenarioComponent scenarioComponent = scenarioController.AddComponent<ScenarioComponent>();
 
+            // Draw the 4 frames
+            RectangleShape topRect = new RectangleShape(new Vector2f(scenarioComponent.TopFrame.Width, scenarioComponent.TopFrame.Height));
+            RectangleShape botRect = new RectangleShape(new Vector2f(scenarioComponent.BotFrame.Width, scenarioComponent.BotFrame.Height));
+            RectangleShape leftRect = new RectangleShape(new Vector2f(scenarioComponent.LeftFrame.Width, scenarioComponent.LeftFrame.Height));
+            RectangleShape rightRect = new RectangleShape(new Vector2f(scenarioComponent.RightFrame.Width, scenarioComponent.RightFrame.Height));
+            topRect.FillColor = Color.Blue + Color.Red;
+            botRect.FillColor = Color.Blue + Color.Red;
+            leftRect.FillColor = Color.Blue + Color.Red;
+            rightRect.FillColor = Color.Blue + Color.Red;
+
+            float windowX = TecnoCampusEngine.WINDOW_WIDTH;
+            float windowY = TecnoCampusEngine.WINDOW_HEIGHT;
+
+            Actor top = new Actor("Top Frame Actor");
+            top.AddComponent<ShapeComponent>(topRect);
+            TransformComponent topTransform = top.AddComponent<TransformComponent>();
+            topTransform.Transform.Position = new Vector2f(0, 0);
+            Actor bot = new Actor("Bot Frame Actor");
+            bot.AddComponent<ShapeComponent>(botRect);
+            TransformComponent botTransform = bot.AddComponent<TransformComponent>();
+            botTransform.Transform.Position = new Vector2f(windowX, windowY);
+            Actor left = new Actor("Left Frame Actor");
+            left.AddComponent<ShapeComponent>(leftRect);
+            TransformComponent leftTransform = left.AddComponent<TransformComponent>();
+            leftTransform.Transform.Position = new Vector2f(0, 0);
+            Actor right = new Actor("Right Frame Actor");
+            right.AddComponent<ShapeComponent>(rightRect);
+            TransformComponent rightTransform = right.AddComponent<TransformComponent>();
+            rightTransform.Transform.Position = new Vector2f(windowX, windowY);
+
+            TecnoCampusEngine.Get.Scene.CreateActor(scenarioController);
+            TecnoCampusEngine.Get.Scene.CreateActor(top);
+            TecnoCampusEngine.Get.Scene.CreateActor(bot);
+            //TecnoCampusEngine.Get.Scene.CreateActor(left);
+            //TecnoCampusEngine.Get.Scene.CreateActor(right);
         }
         private void CreateHUD()
         {

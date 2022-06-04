@@ -10,7 +10,7 @@ namespace TCGame
     public class HealthComponent:BaseComponent
     {
 
-        public const float MAX_HEALTH;
+        public const float MAX_HEALTH = 100.0f;
 
         public float m_CurrentHealth;
         private bool m_Alive = true;
@@ -24,9 +24,9 @@ namespace TCGame
             get => m_CurrentHealth;
             set => m_CurrentHealth = value;
         }
-        public void TakeDmg(float dmg)
+        public void TakeDmg(float _damage)
         {
-            m_CurrentHealth -= dmg;
+            m_CurrentHealth -= _damage;
 
         }
         

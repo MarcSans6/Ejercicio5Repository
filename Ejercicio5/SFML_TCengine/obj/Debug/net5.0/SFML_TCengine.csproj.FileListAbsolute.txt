@@ -84,11 +84,11 @@ C:\Coses Grau\3r Trimestre\PROGRAMACIÓ II\Ejercicios\Ejercicio4\SFML_TCengine\o
 C:\Coses Grau\3r Trimestre\PROGRAMACIÓ II\Ejercicios\Ejercicio4\SFML_TCengine\obj\Debug\net5.0\ref\SFML_TCengine.dll
 C:\Coses Grau\3r Trimestre\PROGRAMACIÓ II\Ejercicios\Ejercicio4\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.pdb
 C:\Coses Grau\3r Trimestre\PROGRAMACIÓ II\Ejercicios\Ejercicio4\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.genruntimeconfig.cache
-C:\Users\iagoa\OneDrive\Desktop\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.csproj.AssemblyReference.cache
-C:\Users\iagoa\OneDrive\Desktop\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\iagoa\OneDrive\Desktop\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.AssemblyInfoInputs.cache
-C:\Users\iagoa\OneDrive\Desktop\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.AssemblyInfo.cs
-C:\Users\iagoa\OneDrive\Desktop\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.csproj.CoreCompileInputs.cache
-C:\Users\iagoa\OneDrive\Desktop\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.dll
-C:\Users\iagoa\OneDrive\Desktop\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\ref\SFML_TCengine.dll
-C:\Users\iagoa\OneDrive\Desktop\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.pdb
+C:\Coses Grau\3r Trimestre\PROGRAMACIÓ II\Ejercicios\EJERCICIO 5 GAME JAM\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.csproj.AssemblyReference.cache
+C:\Coses Grau\3r Trimestre\PROGRAMACIÓ II\Ejercicios\EJERCICIO 5 GAME JAM\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.GeneratedMSBuildEditorConfig.editorconfig
+C:\Coses Grau\3r Trimestre\PROGRAMACIÓ II\Ejercicios\EJERCICIO 5 GAME JAM\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.AssemblyInfoInputs.cache
+C:\Coses Grau\3r Trimestre\PROGRAMACIÓ II\Ejercicios\EJERCICIO 5 GAME JAM\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.AssemblyInfo.cs
+C:\Coses Grau\3r Trimestre\PROGRAMACIÓ II\Ejercicios\EJERCICIO 5 GAME JAM\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.csproj.CoreCompileInputs.cache
+C:\Coses Grau\3r Trimestre\PROGRAMACIÓ II\Ejercicios\EJERCICIO 5 GAME JAM\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.dll
+C:\Coses Grau\3r Trimestre\PROGRAMACIÓ II\Ejercicios\EJERCICIO 5 GAME JAM\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\ref\SFML_TCengine.dll
+C:\Coses Grau\3r Trimestre\PROGRAMACIÓ II\Ejercicios\EJERCICIO 5 GAME JAM\Ejercicio5Repository\Ejercicio5\SFML_TCengine\obj\Debug\net5.0\SFML_TCengine.pdb
