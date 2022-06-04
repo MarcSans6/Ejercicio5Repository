@@ -10,19 +10,25 @@ namespace TCGame
     {
         private int m_Kills = 0;
 
-        private float m_barValue = 0; //de momento
+        private float m_barValue = 100; //de momento
+        private float m_barWeight = 0;
 
+        private Sprite m_ControlBar;
         private Font m_Font;
         private Text m_Text;
         private Text m_BlinkText;
 
         private string m_Label;
 
-        public HUDComponent(string _label)
+        //Constructor where we add the label and we locate the font
+        public HUDComponent(string _label, float value)
         {
             m_RenderLayer = ERenderLayer.HUD;
 
             m_Label = _label;
+            m_barValue = value;
+
+            m_ControlBar = new Sprite();
 
             m_Font = TecnoCampusEngine.Get.Resources.GetFont("Fonts/Coffee Extra");
             m_Text = new Text(m_Label, m_Font);
@@ -32,6 +38,7 @@ namespace TCGame
             UpdateText();
         }
 
+        //Constructor where we add the label and the font of the Kills text
         public HUDComponent(string _label, Font _font)
         {
             m_RenderLayer = ERenderLayer.HUD;
@@ -45,18 +52,20 @@ namespace TCGame
             UpdateText();
         }
 
-
+        //Method where we update the game frame by frame
         public override void Update(float _dt)
         {
             base.Update(_dt);
         }
+
+        //The properties of the text we use in the game
         private void TextProperties()
         {
 
-            const uint characterSize = 15u;
-            const float outlineThickness = 2.0f;
-            const float pointsOffset = 25.0f;
-            Color outlineColor = Color.Red;
+            const uint characterSize = 20u;
+            const float outlineThickness = 1.0f;
+            const float pointsOffset = 30.0f;
+            Color outlineColor = Color.Green;
 
             m_Text.CharacterSize = characterSize;
             m_Text.OutlineThickness = outlineThickness;
