@@ -10,7 +10,7 @@ namespace TCGame
     {
         private int m_Kills = 0;
 
-        private float m_barValue = 100; //de momento
+        private float m_barValue = 100.0f; // player controlbar
         private float m_barWeight = 0;
 
         private Sprite m_ControlBar;
