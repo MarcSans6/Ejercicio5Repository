@@ -104,6 +104,8 @@ namespace TCGame
         {
             Actor controlActor = new Actor("ControlBar Actor");
 
+            
+
             TransformComponent transformComponent = controlActor.AddComponent<TransformComponent>();
             transformComponent.Transform.Position = new Vector2f(TecnoCampusEngine.WINDOW_HEIGHT/2, 50.0f);
 
