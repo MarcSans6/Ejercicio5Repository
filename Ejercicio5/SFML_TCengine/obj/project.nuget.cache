@@ -11,5 +11,12 @@
     "C:\\Users\\Marc\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
     "C:\\Users\\Marc\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Coses Grau\\3r Trimestre\\PROGRAMACIÓ II\\Ejercicios\\EJERCICIO 5 GAME JAM\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

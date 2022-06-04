@@ -503,5 +503,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Coses Grau\\3r Trimestre\\PROGRAMACIÓ II\\Ejercicios\\EJERCICIO 5 GAME JAM\\Ejercicio5Repository\\Ejercicio5\\SFML_TCengine\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

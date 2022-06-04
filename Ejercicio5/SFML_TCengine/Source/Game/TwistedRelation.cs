@@ -99,7 +99,18 @@ namespace TCGame
             // Add objecSpawner to the scene
             TecnoCampusEngine.Get.Scene.CreateActor(objectSpawner);
         }
+        private void CreateControlBar()
+        {
+            Actor controlActor = new Actor("ControlBar Actor");
 
+            TransformComponent transformComponent = controlActor.AddComponent<TransformComponent>();
+            transformComponent.Transform.Position = new Vector2f(TecnoCampusEngine.WINDOW_HEIGHT/2, 50.0f);
+
+            TimerComponent timerComp = controlActor.AddComponent<TimerComponent>();
+            timerComp.Duration = 100.0f;
+            
+
+        }
         private void CreateScenario()
         {
             Actor actor = new Actor("Scenario Actor");
