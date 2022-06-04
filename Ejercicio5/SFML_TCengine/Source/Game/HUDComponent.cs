@@ -13,7 +13,7 @@ namespace TCGame
         private float m_barValue = 100.0f; // player controlbar
         private float m_barWeight = 0;
 
-        private Sprite m_ControlBar;
+        private Texture m_ControlBar;
         private Font m_Font;
         private Text m_Text;
         private Text m_BlinkText;
@@ -21,8 +21,22 @@ namespace TCGame
         private string m_Label;
 
         //Constructor where we add the label and we locate the font
-        
 
+        public HUDComponent(string _label)
+        {
+            m_RenderLayer = ERenderLayer.HUD;
+
+            m_Label = _label;
+
+            m_barValue = Texture.MaximumSize;
+
+            m_Font = TecnoCampusEngine.Get.Resources.GetFont("Fonts/Coffee Extra");
+            m_ControlBar = TecnoCampusEngine.Get.Resources.GetTexture("Textures/barra");
+            m_Text = new Text(m_Label, m_Font);
+
+            TextProperties();
+            UpdateText();
+        }
         //Constructor where we add the label and the font of the Kills text
         public HUDComponent(string _label, Font _font)
         {
@@ -77,7 +91,8 @@ namespace TCGame
         //This method updates the bar weight
         public void UpdateBar()
         {
-            m_barWeight -= m_barValue;
+            m_barWeight = m_barValue;
+
         }
 
         //This method add kills to the hud
@@ -97,7 +112,7 @@ namespace TCGame
         //This method resets the player control timer
         public void ResetControl()
         {
-            
+            m_barValue = 100;
             UpdateBar();
         }
 
