@@ -9,9 +9,9 @@ namespace TCGame
 {
     public class ScenarioComponent:BaseComponent
     {
+
         ScenarioComponent()
         {
-
         }
 
         public override EComponentUpdateCategory GetUpdateCategory()
