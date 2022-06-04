@@ -8,12 +8,14 @@ namespace TCGame
 {
     public class HUDComponent : RenderComponent
     {
+        private const float MAX_VALUE = 100;
+
         private int m_Kills = 0;
 
         private float m_barValue = 100.0f; // player controlbar
         private float m_barWeight = 0;
 
-        private Sprite m_ControlBar;
+        private Texture m_ControlBar;
         private Font m_Font;
         private Text m_Text;
         private Text m_BlinkText;
@@ -26,10 +28,9 @@ namespace TCGame
             m_RenderLayer = ERenderLayer.HUD;
 
             m_Label = _label;
-            m_barValue = value;
+            m_barValue = MAX_VALUE;
 
-            m_ControlBar = TecnoCampusEngine.Get.Resources.GetTexture("Textures/Pixel");//aqui se porque falla chill, lo que no se es como añadir la textura y despues msotrar la imagen
-
+            m_ControlBar = TecnoCampusEngine.Get.Resources.GetTexture("Textures/barra");
             m_Font = TecnoCampusEngine.Get.Resources.GetFont("Fonts/Coffee Extra");
             m_Text = new Text(m_Label, m_Font);
             m_BlinkText = new Text(m_Kills.ToString(), m_Font);
@@ -46,7 +47,7 @@ namespace TCGame
             m_Label = _label;
 
             m_barValue = Texture.MaximumSize;
-            m_ControlBar = new Texture;
+            m_ControlBar= TecnoCampusEngine.Get.Resources.GetTexture("Textures/barra");
 
             m_Font = _font;
             m_Text = new Text(m_Label, m_Font);
@@ -95,7 +96,7 @@ namespace TCGame
         {
 
             m_barWeight -= m_barValue;
-            Texture.MaximumSize = m_barWeight;
+            
         }
 
         //This method add kills to the hud
