@@ -106,14 +106,16 @@ namespace TCGame
         {
             Actor controlActor = new Actor("ControlBar Actor");
 
-            
+            SpriteComponent spriteComponent = controlActor.AddComponent<SpriteComponent>("Textures/barra",2u,1u);
+            spriteComponent.m_RenderLayer = RenderComponent.ERenderLayer.Front;
 
             TransformComponent transformComponent = controlActor.AddComponent<TransformComponent>();
             transformComponent.Transform.Position = new Vector2f(TecnoCampusEngine.WINDOW_HEIGHT/2, 50.0f);
 
             TimerComponent timerComp = controlActor.AddComponent<TimerComponent>();
             timerComp.Duration = 100.0f;
-            
+
+            controlActor.AddComponent<HUDComponent>("");
 
         }
         private void CreateScenario()
@@ -161,14 +163,13 @@ namespace TCGame
         {
             Actor actor = new Actor("HUD Actor");
 
-            // Add the transform component and set its position correctly
+            
+            // Adds the transform component and set its position correctly
             TransformComponent transformComponent = actor.AddComponent<TransformComponent>();
             transformComponent.Transform.Position = new Vector2f(900.0f, 50.0f);
-            actor.AddComponent<HUDComponent>("Puntos");
+            actor.AddComponent<HUDComponent>("Kills");
 
-            // Something is missing here!!!
             TecnoCampusEngine.Get.Scene.CreateActor(actor);
-            //////////////////////////////////////
         }
 
     }
