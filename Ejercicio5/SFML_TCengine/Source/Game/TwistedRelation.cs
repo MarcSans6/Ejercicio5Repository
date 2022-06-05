@@ -8,11 +8,11 @@ namespace TCGame
     {
         public void Init()
         {
-            CreateMainCharacter();
-            //CreateAlly();
-            CreateEnemySpawner();
-            //CreateControlBar();
             CreateScenario();
+            CreateMainCharacter();
+            CreateEnemySpawner();
+            //CreateAlly();
+            //CreateControlBar();
             //CreateHUD();
         }
 
@@ -71,8 +71,10 @@ namespace TCGame
             spawnerComponent.m_MaxTime = 3.0f;
 
             //Set the MinPosition and MaxPosition
-            spawnerComponent.m_MinPosition = new Vector2f(10, 10);
-            spawnerComponent.m_MaxPosition = new Vector2f(TecnoCampusEngine.Get.ViewportSize.X - 10, TecnoCampusEngine.Get.ViewportSize.Y - 10);
+            ScenarioComponent scenarioComponent = TecnoCampusEngine.Get.Scene.GetFirstComponent<ScenarioComponent>();
+
+            spawnerComponent.m_MinPosition = new Vector2f(scenarioComponent.LeftFrame.Size.X, scenarioComponent.TopFrame.Size.Y);
+            spawnerComponent.m_MaxPosition = new Vector2f(TecnoCampusEngine.Get.ViewportSize.X - scenarioComponent.LeftFrame.Size.X, TecnoCampusEngine.Get.ViewportSize.Y - scenarioComponent.BotFrame.Size.Y - 50);
 
             spawnerComponent.Reset();
 
@@ -122,40 +124,38 @@ namespace TCGame
             ScenarioComponent scenarioComponent = scenarioController.AddComponent<ScenarioComponent>();
 
             // Draw the 4 frames
-            RectangleShape topRect = new RectangleShape(new Vector2f(scenarioComponent.TopFrame.Width, scenarioComponent.TopFrame.Height));
-            RectangleShape botRect = new RectangleShape(new Vector2f(scenarioComponent.BotFrame.Width, scenarioComponent.BotFrame.Height));
-            RectangleShape leftRect = new RectangleShape(new Vector2f(scenarioComponent.LeftFrame.Width, scenarioComponent.LeftFrame.Height));
-            RectangleShape rightRect = new RectangleShape(new Vector2f(scenarioComponent.RightFrame.Width, scenarioComponent.RightFrame.Height));
-            topRect.FillColor = Color.Blue + Color.Red;
-            botRect.FillColor = Color.Blue + Color.Red;
-            leftRect.FillColor = Color.Blue + Color.Red;
-            rightRect.FillColor = Color.Blue + Color.Red;
-
-            float windowX = TecnoCampusEngine.WINDOW_WIDTH;
-            float windowY = TecnoCampusEngine.WINDOW_HEIGHT;
-
             Actor top = new Actor("Top Frame Actor");
-            top.AddComponent<ShapeComponent>(topRect);
-            TransformComponent topTransform = top.AddComponent<TransformComponent>();
-            topTransform.Transform.Position = new Vector2f(0, 0);
-            Actor bot = new Actor("Bot Frame Actor");
-            bot.AddComponent<ShapeComponent>(botRect);
-            TransformComponent botTransform = bot.AddComponent<TransformComponent>();
-            botTransform.Transform.Position = new Vector2f(windowX, windowY);
+            top.AddComponent<ShapeComponent>(scenarioComponent.TopFrame);
+            TransformComponent topPos = top.AddComponent<TransformComponent>();
+            topPos.Transform.Position = scenarioComponent.TopPosition;
+
+            Actor bot = new Actor("Bot Frame Acstor");
+            bot.AddComponent<ShapeComponent>(scenarioComponent.BotFrame);
+            TransformComponent botPos = bot.AddComponent<TransformComponent>();
+            botPos.Transform.Position = scenarioComponent.BotPosition;
+
             Actor left = new Actor("Left Frame Actor");
-            left.AddComponent<ShapeComponent>(leftRect);
-            TransformComponent leftTransform = left.AddComponent<TransformComponent>();
-            leftTransform.Transform.Position = new Vector2f(0, 0);
+            left.AddComponent<ShapeComponent>(scenarioComponent.LeftFrame);
+            TransformComponent leftPos = left.AddComponent<TransformComponent>();
+            leftPos.Transform.Position = scenarioComponent.LeftPosition;
+
             Actor right = new Actor("Right Frame Actor");
-            right.AddComponent<ShapeComponent>(rightRect);
-            TransformComponent rightTransform = right.AddComponent<TransformComponent>();
-            rightTransform.Transform.Position = new Vector2f(windowX, windowY);
+            right.AddComponent<ShapeComponent>(scenarioComponent.RightFrame);
+            TransformComponent rightPos = right.AddComponent<TransformComponent>();
+            rightPos.Transform.Position = scenarioComponent.RightPosition;
+
+            Actor screen = new Actor("Screen Actor");
+            screen.AddComponent<ShapeComponent>(scenarioComponent.Screen);
+            TransformComponent screenPos = screen.AddComponent<TransformComponent>();
+            screenPos.Transform.Position = scenarioComponent.ScreenPosition;
+
 
             TecnoCampusEngine.Get.Scene.CreateActor(scenarioController);
+            TecnoCampusEngine.Get.Scene.CreateActor(screen);
             TecnoCampusEngine.Get.Scene.CreateActor(top);
             TecnoCampusEngine.Get.Scene.CreateActor(bot);
-            //TecnoCampusEngine.Get.Scene.CreateActor(left);
-            //TecnoCampusEngine.Get.Scene.CreateActor(right);
+            TecnoCampusEngine.Get.Scene.CreateActor(left);
+            TecnoCampusEngine.Get.Scene.CreateActor(right);
         }
         private void CreateHUD()
         {
