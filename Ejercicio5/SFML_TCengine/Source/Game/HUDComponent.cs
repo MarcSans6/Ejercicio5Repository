@@ -28,11 +28,10 @@ namespace TCGame
 
             m_Label = _label;
 
-            m_barValue = Texture.MaximumSize;
-
             m_Font = TecnoCampusEngine.Get.Resources.GetFont("Fonts/Coffee Extra");
             m_ControlBar = TecnoCampusEngine.Get.Resources.GetTexture("Textures/barra");
             m_Text = new Text(m_Label, m_Font);
+            m_BlinkText = new Text(m_Kills.ToString(), m_Font);
 
             TextProperties();
             UpdateText();
@@ -44,7 +43,7 @@ namespace TCGame
 
             m_Label = _label;
 
-            m_barValue = Texture.MaximumSize;
+            m_barWeight = Texture.MaximumSize;
 
             m_Font = _font;
             m_Text = new Text(m_Label, m_Font);
@@ -57,7 +56,7 @@ namespace TCGame
         public override void Update(float _dt)
         {
             base.Update(_dt);
-            UpdateBar();
+            m_barValue -= _dt;
         }
 
         //The properties of the text we use in the game
@@ -100,6 +99,12 @@ namespace TCGame
         {
             m_Kills++;
             UpdateText();
+        }
+        //This method increases the player control timer
+        public void IncreaseControl()
+        {
+            m_barValue++;
+            UpdateBar();
         }
 
         //This method reduces the player control timer
