@@ -17,15 +17,12 @@ namespace TCGame
                 if( targetComponent.Owner.GetGlobalBounds().Intersects(Owner.GetGlobalBounds()))
                 {
 
-                    targetComponent.Owner.Destroy();
+                    targetComponent.Owner.GetComponent<HealthComponent>().TakeDmg(1.0f);
                     Owner.Destroy();
 
                     HUDComponent hudComponent = TecnoCampusEngine.Get.Scene.GetFirstComponent<HUDComponent>();
                     if (hudComponent != null)
                     {
-                        hudComponent.IncreaseKills();
-                        hudComponent.IncreaseControl();
-
                     }
                 }
             }

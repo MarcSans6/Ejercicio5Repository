@@ -132,7 +132,7 @@ namespace TCGame
             _target.Draw(m_BlinkText, _states);
 
             _states.Transform *= Owner.GetWorldTransform();
-            _target.Draw(m_ControlBar, _states);
+            //_target.Draw(m_ControlBar, _states);
         }
 
         public override object Clone()

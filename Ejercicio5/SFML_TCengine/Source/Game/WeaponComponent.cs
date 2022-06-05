@@ -39,14 +39,9 @@ namespace TCGame
                 m_TimeToShoot -= _dt;
             }
 
-            if (Mouse.IsButtonPressed(Mouse.Button.Left))
-            {
-                Shoot();
-            }
-
         }
 
-        public void Shoot()
+        public void Shoot(Vector2f _forward, float _speed)
         {
             if (m_TimeToShoot <= 0.0f)
             {
@@ -69,25 +64,18 @@ namespace TCGame
                 transformComponent.Transform.Position = actorTransform.Transform.Position;
                 transformComponent.Transform.Rotation = actorTransform.Transform.Rotation;
 
-                // Get the component where you store the m_Forward information
-                AimMouseComponent aimMouseComponent = Owner.GetComponent<AimMouseComponent>();
-
                 // Add the MRUComponent to the bulletActor
                 MRUComponent mruComponent = bulletActor.AddComponent<MRUComponent>();
-                mruComponent.Forward = aimMouseComponent.Forward;
-                mruComponent.Speed = 700.0f;
+                mruComponent.Forward = _forward;
+                mruComponent.Speed = _speed;
 
                
                 // Add the BulletComponent to the bulletActor
                 bulletActor.AddComponent<BulletComponent>();
+                bulletActor.AddComponent<DeathOutsideWallsComponent>();
 
                 // 4. Add the bulletActor to the Scene
                 TecnoCampusEngine.Get.Scene.CreateActor(bulletActor);
-
-
-
-
-
 
                 ////////////////////////////////////////////////////////
 

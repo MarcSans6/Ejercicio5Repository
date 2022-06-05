@@ -1,6 +1,7 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 using TCEngine;
+using System;
 
 namespace TCGame
 {
@@ -8,12 +9,12 @@ namespace TCGame
     {
         public void Init()
         {
-            CreateScenario();
             CreateMainCharacter();
             CreateEnemySpawner();
-            //CreateAlly();
+            CreateAlly();
             //CreateControlBar();
             //CreateHUD();
+            CreateScenario();
         }
 
         public void DeInit()
@@ -35,14 +36,14 @@ namespace TCGame
             shape.SetPoint(1, new Vector2f(40.0f, 40.0f));
             shape.SetPoint(2, new Vector2f(20.0f, 20.0f));
             shape.SetPoint(3, new Vector2f(0.0f, 40.0f));
-            shape.FillColor = Color.Transparent;
-            shape.OutlineColor = Color.Green;
+            shape.FillColor = Color.Yellow;
+            shape.OutlineColor = Color.Yellow;
             shape.OutlineThickness = 2.0f;
             actor.AddComponent<ShapeComponent>(shape);
 
             // Add the transform component and set its position correctly
             TransformComponent transformComponent = actor.AddComponent<TransformComponent>();
-            transformComponent.Transform.Position = new Vector2f(600.0f, 200.0f);
+            transformComponent.Transform.Position = new Vector2f(800.0f, 300.0f);
 
             // Add the aim component and set its position correctly
             AimMouseComponent mainAimMouseComponent = actor.AddComponent<AimMouseComponent>();
@@ -60,11 +61,53 @@ namespace TCGame
             TecnoCampusEngine.Get.Scene.CreateActor(actor);
         }
 
+        private void CreateAlly()
+        {
+            Actor actor = new Actor("Ally Actor");
+
+            ConvexShape shape = new ConvexShape(8);
+
+            shape.SetPoint(0, new Vector2f(10, 0));
+            shape.SetPoint(1, new Vector2f(30, 0));
+            shape.SetPoint(2, new Vector2f(40, 10));
+            shape.SetPoint(3, new Vector2f(40, 30));
+            shape.SetPoint(4, new Vector2f(30, 40));
+            shape.SetPoint(5, new Vector2f(10, 40));
+            shape.SetPoint(6, new Vector2f(0, 30));
+            shape.SetPoint(7, new Vector2f(0, 10));
+
+            shape.OutlineColor = Color.Green;
+            shape.FillColor = Color.Green;
+            shape.OutlineThickness = 2.0f;
+            actor.AddComponent<ShapeComponent>(shape);
+
+            TransformComponent transformComponent = actor.AddComponent<TransformComponent>();
+            transformComponent.Transform.Position = new Vector2f(400.0f, 300.0f);
+
+            MRUComponent mruComponent = actor.AddComponent<MRUComponent>();
+            Random random = new Random();
+
+            float x = random.Next(1, 10);
+            float y = random.Next(1, 10);
+
+            Vector2f randomDir = new Vector2f(x,y);
+            randomDir.Normal();
+
+            mruComponent.Forward = randomDir;
+            mruComponent.Speed = 50.0f;
+
+            actor.AddComponent<BounceComponent>();
+            HealthComponent healtComponent = actor.AddComponent<HealthComponent>(20.0f);
+            actor.AddComponent<TargetComponent>();
+
+            TecnoCampusEngine.Get.Scene.CreateActor(actor);
+        }
+
         private void CreateEnemySpawner()
         {
             // Create the actor Object Spawner and add the ActorSpawnerComponent
-            Actor objectSpawner = new Actor("Object Spawner");
-            ActorSpawnerComponent<ActorPrefab> spawnerComponent = objectSpawner.AddComponent<ActorSpawnerComponent<ActorPrefab>>();
+            Actor enemySpawner = new Actor("Object Spawner");
+            ActorSpawnerComponent<ActorPrefab> spawnerComponent = enemySpawner.AddComponent<ActorSpawnerComponent<ActorPrefab>>();
 
             // Set the MinTime and MaxTime
             spawnerComponent.m_MinTime = 0.2f;
@@ -73,20 +116,20 @@ namespace TCGame
             //Set the MinPosition and MaxPosition
             ScenarioComponent scenarioComponent = TecnoCampusEngine.Get.Scene.GetFirstComponent<ScenarioComponent>();
 
-            spawnerComponent.m_MinPosition = new Vector2f(scenarioComponent.LeftFrame.Size.X, scenarioComponent.TopFrame.Size.Y);
-            spawnerComponent.m_MaxPosition = new Vector2f(TecnoCampusEngine.Get.ViewportSize.X - scenarioComponent.LeftFrame.Size.X, TecnoCampusEngine.Get.ViewportSize.Y - scenarioComponent.BotFrame.Size.Y - 50);
+            spawnerComponent.m_MinPosition = new Vector2f(110.0f, 260.0f);
+            spawnerComponent.m_MaxPosition = new Vector2f(TecnoCampusEngine.Get.ViewportSize.X - 110, TecnoCampusEngine.Get.ViewportSize.Y - 160);
 
             spawnerComponent.Reset();
 
-            float objectRadius = 20.0f;
+            float enemyRadius = 20.0f;
 
-            ActorPrefab objectPrefab = new ActorPrefab("Object");
+            ActorPrefab enemyPrefab = new ActorPrefab("Enemy Prefab");
 
-            // Add components to Object Prefab
-            ShapeComponent shapeComponent = objectPrefab.AddComponent<ShapeComponent>();
+            // Add components to Enemy Prefab
+            ShapeComponent shapeComponent = enemyPrefab.AddComponent<ShapeComponent>();
 
             // Create de CircleShape
-            CircleShape shape = new CircleShape(objectRadius);
+            CircleShape shape = new CircleShape(enemyRadius);
             shape.FillColor = Color.Transparent;
             shape.OutlineColor = Color.Yellow;
             shape.OutlineThickness = 2.0f;
@@ -94,13 +137,15 @@ namespace TCGame
             shapeComponent.Shape = shape;
             
             // Add the other components
-            TransformComponent transformComponent = objectPrefab.AddComponent<TransformComponent>();
-            TargetComponent targetComponent = objectPrefab.AddComponent<TargetComponent>();
+            TransformComponent transformComponent = enemyPrefab.AddComponent<TransformComponent>();
+            TargetComponent targetComponent = enemyPrefab.AddComponent<TargetComponent>();
+            HealthComponent healthComponent = enemyPrefab.AddComponent<HealthComponent>(10.0f);
+            FollowMainCharacterComponent followMainCharacterComponent = enemyPrefab.AddComponent<FollowMainCharacterComponent>(50.0f);
 
-            spawnerComponent.AddActorPrefab(objectPrefab);
+            spawnerComponent.AddActorPrefab(enemyPrefab);
 
             // Add objecSpawner to the scene
-            TecnoCampusEngine.Get.Scene.CreateActor(objectSpawner);
+            TecnoCampusEngine.Get.Scene.CreateActor(enemySpawner);
         }
         private void CreateControlBar()
         {

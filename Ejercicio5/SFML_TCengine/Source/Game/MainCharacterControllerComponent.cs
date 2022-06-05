@@ -1,4 +1,5 @@
-﻿using SFML.System;
+﻿using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 using TCEngine;
 
@@ -30,6 +31,8 @@ namespace TCGame
         {
             base.Update(_dt);
 
+            m_Speed = DEAFULT_MOVEMENT_SPEED;
+
             m_Dir = new Vector2f(0, 0);
 
             if (Keyboard.IsKeyPressed(Keyboard.Key.W))
@@ -54,13 +57,36 @@ namespace TCGame
             {
                 if (Owner.GetComponent<WeaponComponent>() != null)
                 {
-                    Owner.GetComponent<WeaponComponent>().Shoot();
+                    Owner.GetComponent<WeaponComponent>().Shoot(Owner.GetComponent<AimMouseComponent>().Forward , 1100.0f);
                 }
             }
 
             m_Dir = m_Dir.Normal();
 
+            ScenarioComponent scenarioComponent = TecnoCampusEngine.Get.Scene.GetFirstComponent<ScenarioComponent>();
+            Vector2f newPosition = Owner.GetComponent<TransformComponent>().Transform.Position + m_Dir * m_Speed * _dt;
+
+            if (CheckPosition(_dt))
+            {
+                m_Speed = 0.0f;
+            }
+
             Owner.GetComponent<TransformComponent>().Transform.Position += m_Dir * m_Speed * _dt;
+        }
+
+        private bool CheckPosition(float _dt)
+        {
+            FloatRect newOwnerBounds = new FloatRect((Owner.GetComponent<TransformComponent>().Transform.Position + m_Dir * m_Speed * _dt), new Vector2f(Owner.GetGlobalBounds().Width, Owner.GetGlobalBounds().Height));
+
+            ScenarioComponent scenario = TecnoCampusEngine.Get.Scene.GetFirstComponent<ScenarioComponent>();
+
+            if(scenario.TopFrameBounds.Intersects(newOwnerBounds) || scenario.BotFrameBounds.Intersects(newOwnerBounds) || scenario.LeftFrameBounds.Intersects(newOwnerBounds) || scenario.RightFrameBounds.Intersects(newOwnerBounds))
+            {
+                return true;
+            }
+
+            return false;
+
         }
     }
 }

@@ -9,54 +9,47 @@ namespace TCGame
 {
     public class BounceComponent: BaseComponent
     {
-        private const float BULLET_SPEED = 100;
-        private float m_Speed;
-        private Vector2f bullet_Forward;
-        private Vector2f refactor_Forward;
 
-        // Getters and Setters of Speed, bullet Forward, refactor Forward
-        public float Speed
-        {
-            get => m_Speed;
-            set => m_Speed = value;
-        }
+        private float m_AngularSpeed = 360.0f;
+        private Vector2f m_Dir;
+        private Vector2f m_RefractedDir;
 
-        public Vector2f BulletDirection
-        {
-            get => bullet_Forward;
-            set => bullet_Forward = value;
-        }
-
-        public Vector2f RefractDirection
-        {
-            get => refactor_Forward;
-            set => refactor_Forward = value;
-        }
         // Constructor without parametres 
         public BounceComponent()
         {
-            Speed = BULLET_SPEED;
         }
-
 
         public override void Update(float _dt)
         {
             base.Update(_dt);
 
-            // Calaculate the refractor forward
+            TransformComponent transformComponent = Owner.GetComponent<TransformComponent>();
+            m_Dir = Owner.GetComponent<MRUComponent>().Forward;
 
-            TransformComponent bulletTransformComponent = Owner.GetComponent<TransformComponent>();
-            bulletTransformComponent.Transform.Position = bullet_Forward;
+            m_RefractedDir = m_Dir;
 
-            foreach (BulletComponent bulletComponent in TecnoCampusEngine.Get.Scene.GetAllComponents<BulletComponent>())
+            ScenarioComponent scenario = TecnoCampusEngine.Get.Scene.GetFirstComponent<ScenarioComponent>();
+
+            FloatRect ownerBounds = Owner.GetGlobalBounds();
+
+            if (scenario != null)
             {
-                if (bulletComponent.Owner.GetGlobalBounds().Contains(TecnoCampusEngine.Get.ViewportSize.X, TecnoCampusEngine.Get.ViewportSize.Y))
+                if (scenario.TopFrameBounds.Contains(Owner.GetPosition().X,Owner.GetPosition().Y) || scenario.BotFrameBounds.Contains(Owner.GetPosition().X, Owner.GetPosition().Y))
                 {
-                    refactor_Forward = new Vector2f(bullet_Forward.X * -1, bullet_Forward.Y * -1);
+                    m_RefractedDir = new Vector2f(m_Dir.X, - m_Dir.Y);
+                }
+                if (scenario.LeftFrameBounds.Contains(Owner.GetPosition().X, Owner.GetPosition().Y) || scenario.RightFrameBounds.Contains(Owner.GetPosition().X, Owner.GetPosition().Y))
+                {
+                    m_RefractedDir = new Vector2f(- m_Dir.X, m_Dir.Y);
                 }
             }
 
-            Owner.GetComponent<TransformComponent>().Transform.Position += refactor_Forward * Speed * _dt;
+            Owner.GetComponent<MRUComponent>().Forward = m_RefractedDir;
+
+            float desiredAngle = MathUtil.AngleWithSign(m_Dir, m_RefractedDir);
+
+            transformComponent.Transform.Rotation += desiredAngle;
+
         }
 
         

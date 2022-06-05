@@ -1,7 +1,5 @@
 ﻿using SFML.Graphics;
 using SFML.System;
-using SFML.Window;
-using System.Diagnostics;
 using TCEngine;
 
 
@@ -9,13 +7,15 @@ namespace TCGame
 {
     public class ScenarioComponent:BaseComponent
     {
-        private float m_TopFrameThickness = 250.0f;
+        private float m_TopFrameThickness = 150.0f;
         private float m_FrameThickness = 100.0f;
         private float m_WindowHeight;
         private float m_WindowWidth;
         private RectangleShape m_TopFrame, m_BotFrame, m_LeftFrame, m_RightFrame, m_Screen;
         private Vector2f m_TopPosition, m_BotPosition, m_LeftPosition, m_RightPosition,m_ScreenPosition;
-        private Color m_FrameColor = Color.Yellow, m_ScreenColor = Color.Blue;
+        public FloatRect TopFrameBounds, BotFrameBounds, LeftFrameBounds, RightFrameBounds;
+        private Color m_FrameColor = Color.Blue + Color.Red, m_ScreenColor = Color.Transparent;
+        private float offSet = 50.0f;
         
         public float WindowWidth
         {
@@ -80,16 +80,22 @@ namespace TCGame
 
         public ScenarioComponent()
         {
-            m_WindowWidth = TecnoCampusEngine.Get.ViewportSize.X;
-            m_WindowHeight = TecnoCampusEngine.Get.ViewportSize.Y;
+            m_WindowWidth = TecnoCampusEngine.WINDOW_WIDTH;
+            m_WindowHeight = TecnoCampusEngine.WINDOW_HEIGHT;
+            TecnoCampusEngine.Get.ViewportSize = new Vector2f(m_WindowWidth,m_WindowHeight);
 
-            m_TopPosition = new Vector2f(0,0);
-            m_BotPosition = new Vector2f(0,m_WindowHeight + 50);
-            m_LeftPosition = new Vector2f(0,0);
-            m_RightPosition = new Vector2f(m_WindowWidth, 0);
-            m_ScreenPosition = new Vector2f (0, 0);
+            m_TopPosition = new Vector2f(offSet,offSet);
+            m_BotPosition = new Vector2f(offSet,m_WindowHeight + offSet);
+            m_LeftPosition = new Vector2f(offSet,offSet);
+            m_RightPosition = new Vector2f(m_WindowWidth - offSet,offSet);
+            m_ScreenPosition = new Vector2f (offSet, offSet);
 
             CreateFrame();
+
+            TopFrameBounds = new FloatRect(new Vector2f(0,0), m_TopFrame.Size);
+            BotFrameBounds = new FloatRect(new Vector2f(0,m_WindowHeight), m_BotFrame.Size);
+            LeftFrameBounds = new FloatRect(new Vector2f(0, 0), m_LeftFrame.Size);
+            RightFrameBounds = new FloatRect(new Vector2f(m_WindowWidth - offSet * 2,0), m_RightFrame.Size);
 
             m_TopFrame.FillColor = m_FrameColor;
             m_BotFrame.FillColor = m_FrameColor;
