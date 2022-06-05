@@ -46,6 +46,7 @@ namespace TCGame
             m_barWeight = Texture.MaximumSize;
 
             m_Font = _font;
+            m_ControlBar = new Texture(m_ControlBar.Size.X,m_ControlBar.Size.Y);
             m_Text = new Text(m_Label, m_Font);
 
             TextProperties();
@@ -90,7 +91,7 @@ namespace TCGame
         //This method updates the bar weight
         public void UpdateBar()
         {
-            m_barWeight = m_barValue;
+            m_barValue = m_barWeight;
 
         }
 
@@ -129,6 +130,9 @@ namespace TCGame
             _states.Transform *= Owner.GetWorldTransform();
             _target.Draw(m_Text, _states);
             _target.Draw(m_BlinkText, _states);
+
+            _states.Transform *= Owner.GetWorldTransform();
+            _target.Draw(m_ControlBar, _states);
         }
 
         public override object Clone()
