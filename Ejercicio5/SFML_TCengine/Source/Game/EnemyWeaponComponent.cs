@@ -6,20 +6,20 @@ using TCEngine;
 
 namespace TCGame
 {
-    public class WeaponComponent : BaseComponent
+    public class EnemyWeaponComponent : BaseComponent
     {
-        private const float DEFAULT_FIRE_RATE = 0.3f;
+        private const float DEFAULT_FIRE_RATE = 0.5f;
 
         private float m_FireRate;
         private float m_TimeToShoot;
 
-        public WeaponComponent()
+        public EnemyWeaponComponent()
         {
             m_FireRate = DEFAULT_FIRE_RATE;
             m_TimeToShoot = 0.0f;
         }
 
-        public WeaponComponent(float _fireRate)
+        public EnemyWeaponComponent(float _fireRate)
         {
             m_FireRate = _fireRate;
             m_TimeToShoot = 0.0f;
@@ -45,37 +45,37 @@ namespace TCGame
         {
             if (m_TimeToShoot <= 0.0f)
             {
-                Actor bulletActor = new Actor("Bullet Actor");
+                Actor enemyBulletActor = new Actor("Enemy Bullet Actor");
 
                 // Create a Rectangle Shape 
-                Shape shape = new RectangleShape(new Vector2f(10.0f, 30.0f));
+                Shape shape = new CircleShape(10.0f);
                 shape.FillColor = Color.Transparent;
-                shape.OutlineColor = Color.Red;
-                shape.OutlineThickness = 2.0f;
-                bulletActor.AddComponent<ShapeComponent>(shape);
+                shape.OutlineColor = Color.Red + Color.Yellow;
+                shape.OutlineThickness = 4.0f;
+                enemyBulletActor.AddComponent<ShapeComponent>(shape);
 
                 // Get the transform of the actor that is owner of this instance of the WeaponComponent
                 TransformComponent actorTransform = Owner.GetComponent<TransformComponent>();
 
                 // Add the a TransformComponent to the new bulletActor
-                TransformComponent transformComponent = bulletActor.AddComponent<TransformComponent>();
+                TransformComponent transformComponent = enemyBulletActor.AddComponent<TransformComponent>();
 
                 // Assign the Position and Rotation of the actor that will shoot the bullet (this way, the bullets will appear in the same position as the actor)
                 transformComponent.Transform.Position = actorTransform.Transform.Position;
                 transformComponent.Transform.Rotation = actorTransform.Transform.Rotation;
 
                 // Add the MRUComponent to the bulletActor
-                MRUComponent mruComponent = bulletActor.AddComponent<MRUComponent>();
+                MRUComponent mruComponent = enemyBulletActor.AddComponent<MRUComponent>();
                 mruComponent.Forward = _forward;
                 mruComponent.Speed = _speed;
 
                
                 // Add the BulletComponent to the bulletActor
-                bulletActor.AddComponent<BulletComponent>();
-                bulletActor.AddComponent<DeathOutsideWallsComponent>();
+                enemyBulletActor.AddComponent<EnemyBulletComponent>();
+                enemyBulletActor.AddComponent<DeathOutsideWallsComponent>();
 
                 // 4. Add the bulletActor to the Scene
-                TecnoCampusEngine.Get.Scene.CreateActor(bulletActor);
+                TecnoCampusEngine.Get.Scene.CreateActor(enemyBulletActor);
 
                 ////////////////////////////////////////////////////////
 
@@ -90,7 +90,7 @@ namespace TCGame
 
         public override object Clone()
         {
-            WeaponComponent clonedComponent = new WeaponComponent(m_FireRate);
+            MainWeaponComponent clonedComponent = new MainWeaponComponent(m_FireRate);
             return clonedComponent;
         }
     }

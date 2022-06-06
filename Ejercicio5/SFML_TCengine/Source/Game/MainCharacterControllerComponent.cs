@@ -55,9 +55,9 @@ namespace TCGame
             }
             if (Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                if (Owner.GetComponent<WeaponComponent>() != null)
+                if (Owner.GetComponent<MainWeaponComponent>() != null)
                 {
-                    Owner.GetComponent<WeaponComponent>().Shoot(Owner.GetComponent<AimMouseComponent>().Forward , 1100.0f);
+                    Owner.GetComponent<MainWeaponComponent>().Shoot(Owner.GetComponent<AimMouseComponent>().Forward , 1100.0f);
                 }
             }
 

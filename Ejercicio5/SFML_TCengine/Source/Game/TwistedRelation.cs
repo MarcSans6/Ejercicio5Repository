@@ -55,7 +55,7 @@ namespace TCGame
              
             //////////////////////////////////////////////////
 
-            actor.AddComponent<WeaponComponent>();
+            actor.AddComponent<MainWeaponComponent>();
 
             // Add the actor to the scene
             TecnoCampusEngine.Get.Scene.CreateActor(actor);
@@ -106,7 +106,7 @@ namespace TCGame
         private void CreateEnemySpawner()
         {
             // Create the actor Object Spawner and add the ActorSpawnerComponent
-            Actor enemySpawner = new Actor("Object Spawner");
+            Actor enemySpawner = new Actor("Enemy Spawner");
             ActorSpawnerComponent<ActorPrefab> spawnerComponent = enemySpawner.AddComponent<ActorSpawnerComponent<ActorPrefab>>();
 
             // Set the MinTime and MaxTime
@@ -121,7 +121,7 @@ namespace TCGame
 
             spawnerComponent.Reset();
 
-            float enemyRadius = 20.0f;
+            float enemyRadius = 25.0f;
 
             ActorPrefab enemyPrefab = new ActorPrefab("Enemy Prefab");
 
@@ -130,8 +130,8 @@ namespace TCGame
 
             // Create de CircleShape
             CircleShape shape = new CircleShape(enemyRadius);
-            shape.FillColor = Color.Transparent;
-            shape.OutlineColor = Color.Yellow;
+            shape.FillColor = Color.Red;
+            shape.OutlineColor = Color.Red;
             shape.OutlineThickness = 2.0f;
 
             shapeComponent.Shape = shape;
@@ -139,9 +139,10 @@ namespace TCGame
             // Add the other components
             TransformComponent transformComponent = enemyPrefab.AddComponent<TransformComponent>();
             TargetComponent targetComponent = enemyPrefab.AddComponent<TargetComponent>();
+            EnemyWeaponComponent weaponComponent = enemyPrefab.AddComponent<EnemyWeaponComponent>();
             HealthComponent healthComponent = enemyPrefab.AddComponent<HealthComponent>(10.0f);
-            FollowMainCharacterComponent followMainCharacterComponent = enemyPrefab.AddComponent<FollowMainCharacterComponent>(50.0f);
-
+            PatrolMovementComponent patrolMovementComponent = enemyPrefab.AddComponent<PatrolMovementComponent>(100.0f);
+            
             spawnerComponent.AddActorPrefab(enemyPrefab);
 
             // Add objecSpawner to the scene

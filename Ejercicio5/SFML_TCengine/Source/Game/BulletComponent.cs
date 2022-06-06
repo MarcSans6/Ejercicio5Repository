@@ -35,7 +35,7 @@ namespace TCGame
 
         public override object Clone()
         {
-            WeaponComponent clonedComponent = new WeaponComponent();
+            MainWeaponComponent clonedComponent = new MainWeaponComponent();
             return clonedComponent;
         }
     }
